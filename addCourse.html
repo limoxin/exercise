@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            padding: 0;
+            margin: 0;
+        }
+        div{
+            width: 200px;
+            height: 150px;
+            border: 2px solid rgb(190, 190, 190);
+        }
+        ul{
+            list-style: none;
+        }
+        ul>li{
+            width: 150px;
+            height: 30px;
+            border: 3px solid orange;
+            margin: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 5px;
+        }
+        ul>li>a{
+            width: 20px;
+            height: 20px;
+            background-color: rgb(41, 137, 216);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-decoration: none;
+            color: white;
+        }
+        p>span{
+            padding: 5px;
+            background-color: greenyellow;
+            margin: 10px;
+            border-radius: 5px;
+            display: inline-block;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <ul>
+            <li><span>html</span><a href="javascript:;">+</a></li>
+            <li><span>js</span><a href="javascript:;">+</a></li>
+            <li><span>css</span><a href="javascript:;">+</a></li>
+        </ul>
+    </div>
+    <div>
+        <strong id="count">共选了2门课程</strong>
+        <p id="lists"></p>
+    </div>
+</body>
+</html>
+<script>
+    function lesson(){
+        this.lis = document.querySelectorAll('ul>li');
+        this.countElement = document.getElementById('count');
+        this.p = document.getElementById('lists');
+        this.map = new WeakMap();
+        function run(){
+            this.lis.forEach(li=>{
+                li.querySelector('a').addEventListener('click',event=>{
+                    const state = li.getAttribute('select');
+                    const a = event.target;
+                    if(state){
+                        li.removeAttribute('select');
+                        this.map.delete(li);
+                        a.innerHTML = '+';
+                        a.style.backgroundColor = 'rgb(41,137,216)';
+                    }else{
+                        this.map.set(li);
+                        li.setAttribute('select',true);
+                        a.innerHTML = '-';
+                        a.style.backgroundColor = 'red';
+                    }
+                    this.render();
+                })
+            })
+            this.count = function(){
+               return [...this.lis].reduce((count,li)=>{
+                    return count+=(this.map.has(li)?1:0);
+                },0)
+            }
+            this.lists = function(){
+                return [...this.lis].filter(li=>{
+                    return this.map.has(li);
+                }).map(li=>{
+                    return `<span>${li.querySelector('span').innerHTML}</span>`
+                }).join('');
+            }
+        }
+        this.render = function(){
+            this.countElement.innerHTML = `共选了${count()}门课程`;
+            this.p.innerHTML = this.lists();
+        }
+        run();
+    }
+    lesson();
+</script>
