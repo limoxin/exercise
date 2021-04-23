@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        body{
+            width: 100vw;
+            height: 100vh;
+            background-color: cornflowerblue;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        main{
+            width: 500px;
+            height: 500px;
+            background: linear-gradient(to right,#f1c40f,#e67e22,#d35400);
+            border-radius: 50%;
+            position:relative;
+        }
+        main::after{
+            content: '';
+            width: 90%;
+            height: 90%;
+            background-color: cornflowerblue;
+            border-radius: 50%;
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%,-50%);
+        }
+        main>div:nth-of-type(1){
+            width: 80%;
+            height: 80%;
+            background-color: rgb(103, 201, 231);
+            border-radius: 50%;
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%,-50%);
+            z-index: 1;
+        }
+        main>div>div{
+            width: 6px;
+            height: 100%;
+            background-color: white;
+            position: absolute;
+            left: 50%;
+            transform:translateX(-50%);
+        }
+        main>div>div:nth-child(1){
+            transform:translateX(-50%) rotate(30deg);
+        }
+        main>div>div:nth-child(2){
+            transform:translateX(-50%) rotate(60deg);
+        }
+        main>div>div:nth-child(3){
+            transform:translateX(-50%) rotate(90deg);
+        }
+        main>div>div:nth-child(4){
+            transform:translateX(-50%) rotate(120deg);
+        }
+        main>div>div:nth-child(5){
+            transform:translateX(-50%) rotate(150deg);
+        }
+        main>div>div::after{
+            content: '';
+            width: 110%;
+            height: 90%;
+            background-color: rgb(103, 201, 231);
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%,-50%);
+        }
+        main>div>div::before{
+            content: '';
+            width: 20px;
+            height:20px;
+            background-color:black;
+            position: absolute;
+            z-index: 9;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%,-50%);
+            border-radius: 50%;
+        }
+        main>div:nth-of-type(2){
+            width: 9px;
+            height: 25%;
+            background-color: black;
+            position: absolute;
+            left: 50%;
+            bottom: 50%;
+            transform: translateX(-50%);
+            z-index: 2;
+        }
+        main>div:nth-of-type(3){
+            width: 5px;
+            height: 35%;
+            background-color: black;
+            position: absolute;
+            left: 50%;
+            bottom: 50%;
+            z-index: 2;
+            transform-origin: bottom center;
+            transform: translateX(-50%) rotate(30deg);
+        }
+        main>div:nth-of-type(4){
+            width: 1px;
+            height: 39%;
+            background-color: black;
+            position: absolute;
+            left: 50%;
+            bottom: 50%;
+            z-index: 2;
+            transform-origin: bottom center;
+            transition-timing-function: linear;
+            transition: 60s;
+        }
+        body:hover main>div:nth-of-type(4){
+            transform: rotate(360deg);
+            transition-timing-function: linear;
+        }
+    </style>
+</head>
+<body>
+    <main>
+        <div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+        <div class="hour"></div>
+        <div class="minute"></div>
+        <div class="second"></div>
+    </main>
+</body>
+</html>
